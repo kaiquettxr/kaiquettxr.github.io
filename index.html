@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kaique Teixeira — Creative Producer</title>
+<meta name="description" content="Kaique Teixeira — Creative Producer. Sports, brand and live content production. Rio de Janeiro, Brazil. Open to international relocation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink-950:#101114;
+    --ink-900:#1A1C20;
+    --ink-800:#25282E;
+    --line:#3A3D44;
+    --paper:#F1EEE6;
+    --paper-dim:#E4E0D4;
+    --text-hi:#F5F3EC;
+    --text-mid:#B7B9BE;
+    --amber:#F2A93B;
+    --red:#E1483D;
+    --steel:#5C8AA6;
+    --wine:#A5556A;
+    --graphite:#8A8F98;
+    --radius:2px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+  body{
+    background:var(--ink-950);
+    color:var(--text-hi);
+    font-family:'Inter',sans-serif;
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+  .mono{ font-family:'JetBrains Mono', monospace; }
+  .display{ font-family:'Anton', sans-serif; font-weight:400; letter-spacing:0.01em; text-transform:uppercase; }
+  a{ color:inherit; text-decoration:none; }
+  img{ max-width:100%; display:block; }
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 28px; }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(16,17,20,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1180px; margin:0 auto; padding:14px 28px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .nav-logo{ font-size:15px; letter-spacing:0.12em; }
+  .nav-logo b{ color:var(--amber); }
+  .nav-links{ display:flex; gap:28px; align-items:center; font-size:12px; letter-spacing:0.08em; }
+  .nav-links a{ color:var(--text-mid); transition:color .2s; }
+  .nav-links a:hover{ color:var(--text-hi); }
+  .on-air{ display:flex; align-items:center; gap:7px; font-size:11px; letter-spacing:0.1em; color:var(--text-mid); }
+  .dot{ width:7px; height:7px; border-radius:50%; background:var(--red); animation:blink 1.6s steps(1) infinite; }
+  @keyframes blink{ 0%,49%{opacity:1;} 50%,100%{opacity:.15;} }
+  .nav-toggle{ display:none; background:none; border:1px solid var(--line); color:var(--text-hi); font-size:20px; width:36px; height:36px; cursor:pointer; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; min-height:100svh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:120px 20px 80px;
+    background:
+      linear-gradient(180deg, rgba(16,17,20,0.55), rgba(16,17,20,0.92) 65%, var(--ink-950) 100%),
+      url('https://cdn.myportfolio.com/fc877935-81cc-4b45-a415-0a8d1e2c9504/0a1bb9ca-f628-4198-b81b-adbe73ce936c_rwc_0x314x3840x5114x3840.jpg?h=5d2e92510eae42708675fc664a098ab6') center 25% / cover no-repeat;
+  }
+  .frame{ position:absolute; inset:20px; pointer-events:none; }
+  .corner{ position:absolute; width:26px; height:26px; border-color:var(--amber); }
+  .corner.tl{ top:0; left:0; border-top:2px solid; border-left:2px solid; }
+  .corner.tr{ top:0; right:0; border-top:2px solid; border-right:2px solid; }
+  .corner.bl{ bottom:0; left:0; border-bottom:2px solid; border-left:2px solid; }
+  .corner.br{ bottom:0; right:0; border-bottom:2px solid; border-right:2px solid; }
+  .rec-badge{
+    position:absolute; top:20px; left:26px; display:flex; align-items:center; gap:8px;
+    font-size:12px; letter-spacing:0.08em; color:var(--text-mid);
+  }
+  .rec-badge .dot{ width:8px; height:8px; }
+  .tc{ position:absolute; top:20px; right:26px; font-size:12px; letter-spacing:0.05em; color:var(--text-mid); }
+  .hero-eyebrow{ font-size:12px; letter-spacing:0.2em; color:var(--amber); margin-bottom:22px; opacity:0; animation:heroIn .8s .1s cubic-bezier(.2,.7,.2,1) forwards; }
+  .hero-title{ font-size:clamp(48px,10vw,120px); line-height:0.95; color:var(--text-hi); opacity:0; animation:heroIn .9s .22s cubic-bezier(.2,.7,.2,1) forwards; }
+  .hero-role{ font-size:clamp(14px,2.2vw,20px); letter-spacing:0.06em; color:var(--text-mid); margin-top:18px; text-transform:uppercase; opacity:0; animation:heroIn .8s .38s cubic-bezier(.2,.7,.2,1) forwards; }
+  .hero-tagline{ margin-top:34px; font-size:12px; letter-spacing:0.14em; color:var(--steel); opacity:0; animation:heroIn .8s .5s cubic-bezier(.2,.7,.2,1) forwards; }
+  @keyframes heroIn{ from{ opacity:0; transform:translateY(18px);} to{ opacity:1; transform:translateY(0);} }
+  @media (prefers-reduced-motion: reduce){
+    .hero-eyebrow, .hero-title, .hero-role, .hero-tagline{ animation:none; opacity:1; }
+  }
+  .hero-glow{ position:absolute; inset:0; pointer-events:none; z-index:0; opacity:0; transition:opacity .4s; background:radial-gradient(420px circle at var(--gx,50%) var(--gy,50%), rgba(242,169,59,0.12), transparent 70%); }
+  .hero:hover .hero-glow{ opacity:1; }
+  @media (hover:none){ .hero-glow{ display:none; } }
+  .scroll-cue{ position:absolute; bottom:26px; font-size:11px; letter-spacing:0.12em; color:var(--text-mid); animation:bob 2s ease-in-out infinite; }
+  @keyframes bob{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(6px);} }
+
+  /* ---------- POSITIONING ---------- */
+  .positioning{ background:var(--paper); color:var(--ink-950); padding:110px 0 90px; }
+  .pos-grid{ display:grid; grid-template-columns:0.85fr 1.15fr; gap:56px; align-items:start; }
+  .pos-photo{ position:relative; aspect-ratio:4/5; overflow:hidden; border:1px solid #cfcabb; }
+  .pos-photo img{ width:100%; height:100%; object-fit:cover; object-position:center 22%; transition:transform .6s cubic-bezier(.2,.8,.2,1); }
+  .pos-photo:hover img{ transform:scale(1.04); }
+  .pos-photo-tag{ position:absolute; bottom:14px; left:14px; background:var(--ink-950); color:var(--text-hi); font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.08em; padding:6px 10px; text-transform:uppercase; }
+  .eyebrow{ font-size:12px; letter-spacing:0.18em; color:var(--wine); margin-bottom:18px; }
+  .pullquote{ font-size:clamp(24px,3.4vw,38px); line-height:1.18; }
+  .pos-copy{ margin-top:32px; max-width:640px; font-size:16px; color:#3A3A38; }
+  .pos-copy p + p{ margin-top:14px; }
+  @media (max-width:800px){ .pos-grid{ grid-template-columns:1fr; } .pos-photo{ max-width:340px; } }
+
+  .stats{ margin-top:70px; display:grid; grid-template-columns:repeat(4,1fr); gap:24px; border-top:1px solid #cfcabb; padding-top:34px; }
+  .stat b{ display:block; font-family:'JetBrains Mono',monospace; font-size:clamp(28px,4vw,42px); color:var(--ink-950); }
+  .stat span{ display:block; font-size:11px; letter-spacing:0.08em; color:#6b6a5f; margin-top:6px; text-transform:uppercase; }
+
+  /* ---------- CAPABILITY STRIP ---------- */
+  .capability{ background:var(--ink-900); padding:70px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .cap-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); }
+  .cap-item{ background:var(--ink-900); padding:30px 26px; }
+  .sq{ width:10px; height:10px; margin-bottom:16px; }
+  .cap-item h3{ font-size:14px; letter-spacing:0.04em; margin-bottom:10px; text-transform:uppercase; }
+  .cap-item p{ font-size:13px; color:var(--text-mid); line-height:1.5; }
+
+  /* ---------- TRUSTED BY ---------- */
+  .trusted-by{ background:var(--ink-950); border-bottom:1px solid var(--line); padding:22px 0; overflow:hidden; }
+  .marquee-track-wrap{ white-space:nowrap; }
+  .marquee-track2{ display:inline-block; font-family:'Anton',sans-serif; text-transform:uppercase; font-size:22px; letter-spacing:0.02em; color:var(--ink-800); animation:scroll2 30s linear infinite; }
+  .marquee-track2 span{ color:var(--text-mid); margin:0 28px; opacity:0.7; transition:opacity .3s, color .3s; }
+  .marquee-track2 span:hover{ opacity:1; color:var(--amber); }
+  @keyframes scroll2{ from{ transform:translateX(0);} to{ transform:translateX(-50%);} }
+  @media (prefers-reduced-motion: reduce){ .marquee-track2{ animation:none; } }
+
+  /* ---------- FEATURED WORK ---------- */
+  .featured{ padding:110px 0 40px; }
+  .section-head{ display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:50px; flex-wrap:wrap; gap:16px; }
+  .section-head h2{ font-size:clamp(30px,5vw,54px); }
+  .section-head p{ font-size:13px; color:var(--text-mid); max-width:320px; }
+
+  .case{ display:grid; grid-template-columns:0.85fr 1fr; gap:0; margin-bottom:64px; border:1px solid var(--line); }
+  .case:nth-child(even) .case-media{ order:2; }
+  .case-media{ position:relative; background:var(--ink-900); aspect-ratio:4/5; overflow:hidden; }
+  .case-media img{ width:100%; height:100%; object-fit:cover; object-position:center 18%; transition:transform .6s cubic-bezier(.2,.8,.2,1); }
+  .case-media:hover img{ transform:scale(1.045); }
+  .case-media::after{ content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(16,17,20,0) 60%, rgba(16,17,20,0.35) 100%); pointer-events:none; }
+  @media (max-width:760px){ .case-media{ aspect-ratio:4/3; } }
+  .case-media iframe{ width:100%; height:100%; border:0; }
+  .case-body{ padding:40px; display:flex; flex-direction:column; justify-content:center; background:var(--ink-900); }
+  .tag{ display:inline-flex; align-items:center; gap:7px; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; padding:6px 10px; border:1px solid var(--line); width:fit-content; margin-bottom:18px; color:var(--text-mid); }
+  .tag .sq{ margin:0; width:7px; height:7px; }
+  .case-body h3{ font-size:26px; margin-bottom:6px; }
+  .case-meta{ font-size:11px; color:var(--text-mid); letter-spacing:0.06em; margin-bottom:18px; }
+  .case-body p{ font-size:14.5px; color:var(--text-mid); line-height:1.6; }
+
+  @media (max-width:760px){
+    .case{ grid-template-columns:1fr; }
+    .case:nth-child(even) .case-media{ order:0; }
+    .case-body{ padding:28px; }
+  }
+
+  /* ---------- FULL REEL ---------- */
+  .reel{ padding:60px 0 120px; }
+  .filters{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:40px; }
+  .filter-btn{
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    padding:9px 16px; border:1px solid var(--line); background:transparent; color:var(--text-mid); cursor:pointer;
+    transition:all .15s;
+  }
+  .filter-btn:hover{ color:var(--text-hi); border-color:var(--text-mid); }
+  .filter-btn.active{ background:var(--text-hi); color:var(--ink-950); border-color:var(--text-hi); }
+
+  .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--line); }
+  .tile{
+    position:relative; aspect-ratio:4/3; overflow:hidden; background:var(--ink-950);
+    display:flex; flex-direction:column; justify-content:flex-end;
+  }
+  .bars{
+    position:absolute; inset:0; display:none; opacity:0.5;
+  }
+  .tile.img-failed .bars{ display:flex; }
+  .bars span{ flex:1; }
+  .tile-shimmer{
+    position:absolute; inset:0; z-index:0;
+    background:linear-gradient(100deg, var(--ink-900) 40%, #2a2d33 50%, var(--ink-900) 60%);
+    background-size:200% 100%;
+    animation:shimmer 1.6s ease-in-out infinite;
+  }
+  @keyframes shimmer{ 0%{ background-position:200% 0;} 100%{ background-position:-200% 0;} }
+  @media (prefers-reduced-motion: reduce){ .tile-shimmer{ animation:none; } }
+  .tile .bar-1{ background:#c8c8c8; } .tile .bar-2{ background:#c8b93b; } .tile .bar-3{ background:#3ba7c8; }
+  .tile .bar-4{ background:#4bbf5e; } .tile .bar-5{ background:#c05fb0; } .tile .bar-6{ background:#c4453f; } .tile .bar-7{ background:#2b2f38; }
+  .tile-shade{ position:absolute; inset:0; background:linear-gradient(180deg, rgba(16,17,20,0) 40%, rgba(16,17,20,0.55) 62%, rgba(16,17,20,0.97) 88%); }
+  .tile-content{ position:relative; padding:16px; z-index:2; }
+  .tile-content .tag{ margin-bottom:12px; background:rgba(16,17,20,0.75); backdrop-filter:blur(3px); border-color:rgba(255,255,255,0.18); }
+  .tile-content h4{ font-size:14px; text-transform:uppercase; letter-spacing:0.02em; margin-bottom:5px; line-height:1.3; text-shadow:0 1px 8px rgba(0,0,0,0.6); }
+  .tile-content .meta{ font-size:10px; color:var(--text-mid); letter-spacing:0.06em; font-family:'JetBrains Mono',monospace; text-shadow:0 1px 6px rgba(0,0,0,0.6); }
+  .no-signal{ position:absolute; top:14px; right:14px; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.1em; color:var(--text-mid); border:1px solid var(--line); padding:3px 7px; z-index:2; display:none; }
+  .tile.img-failed .no-signal{ display:block; }
+
+  @media (max-width:900px){ .grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:560px){ .grid{ grid-template-columns:1fr; } }
+
+  /* ---------- CTA / INTERNATIONAL ---------- */
+  .cta{ background:var(--paper); color:var(--ink-950); padding:100px 0 0; }
+  .marquee{ overflow:hidden; border-top:1px solid #cfcabb; border-bottom:1px solid #cfcabb; padding:18px 0; margin-top:60px; white-space:nowrap; }
+  .marquee-track{ display:inline-block; font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.15em; animation:scroll 22s linear infinite; }
+  @keyframes scroll{ from{ transform:translateX(0);} to{ transform:translateX(-50%);} }
+  .cta-body{ padding:70px 0 90px; display:grid; grid-template-columns:1.2fr 1fr; gap:60px; }
+  .cta-body h2{ font-size:clamp(30px,5vw,52px); max-width:520px; }
+  .cta-body .pos-copy{ margin-top:22px; }
+  .avail{ display:flex; flex-wrap:wrap; gap:10px; margin-top:30px; }
+  .avail span{ font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; border:1px solid #b9b4a2; padding:7px 12px; color:#4a4940; }
+  .contact-block{ font-family:'JetBrains Mono',monospace; font-size:14px; }
+  .contact-block .row{ display:flex; justify-content:space-between; border-bottom:1px solid #cfcabb; padding:14px 0; }
+  .contact-block .row span:first-child{ color:#6b6a5f; }
+  .contact-block .row a:hover{ color:var(--wine); }
+
+  .btn-cv{
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    margin-bottom:22px; padding:14px 18px; width:100%;
+    background:var(--ink-950); color:var(--text-hi);
+    font-family:'JetBrains Mono',monospace; font-size:12.5px; letter-spacing:0.08em; text-transform:uppercase;
+    border:1px solid var(--ink-950); transition:background .2s, color .2s, border-color .2s;
+  }
+  .btn-cv:hover{ background:var(--amber); border-color:var(--amber); color:var(--ink-950); }
+  .btn-cv-nav{
+    font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-hi);
+    border:1px solid var(--line); padding:7px 12px; transition:border-color .2s, color .2s;
+  }
+  .btn-cv-nav:hover{ border-color:var(--amber); color:var(--amber); }
+
+  @media (max-width:800px){ .cta-body{ grid-template-columns:1fr; } }
+
+  footer{ background:var(--ink-950); border-top:1px solid var(--line); padding:26px 0; }
+  .foot-inner{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:11px; color:var(--text-mid); letter-spacing:0.05em; }
+
+  @media (max-width:900px){
+    .cap-grid{ grid-template-columns:repeat(2,1fr); }
+    .stats{ grid-template-columns:repeat(2,1fr); row-gap:26px; }
+  }
+  @media (max-width:640px){
+    .nav-links{ position:fixed; top:56px; left:0; right:0; background:var(--ink-950); flex-direction:column; align-items:flex-start; padding:20px 28px; border-bottom:1px solid var(--line); display:none; }
+    .nav-links.open{ display:flex; }
+    .nav-toggle{ display:block; }
+    .cap-grid{ grid-template-columns:1fr; }
+  }
+
+  :focus-visible{ outline:2px solid var(--amber); outline-offset:2px; }
+
+  /* ---------- SCROLL REVEAL ---------- */
+  .reveal{ opacity:0; transform:translateY(28px); transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in-view{ opacity:1; transform:translateY(0); }
+  .reveal-stagger .reveal:nth-child(1){ transition-delay:0s; }
+  .reveal-stagger .reveal:nth-child(2){ transition-delay:.08s; }
+  .reveal-stagger .reveal:nth-child(3){ transition-delay:.16s; }
+  .reveal-stagger .reveal:nth-child(4){ transition-delay:.24s; }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+  }
+
+  /* ---------- HOVER MICRO-INTERACTIONS ---------- */
+  .case{ transition:border-color .3s, box-shadow .3s; }
+  .case:hover{ border-color:var(--text-mid); box-shadow:0 18px 46px rgba(0,0,0,0.35); }
+  .case-body a{ position:relative; display:inline-block; }
+  .case-body a::after{ content:''; position:absolute; left:0; bottom:-3px; width:0; height:1px; background:currentColor; transition:width .3s ease; }
+  .case-body a:hover::after{ width:100%; }
+
+  .cap-item{ transition:background .3s; }
+  .cap-item:hover{ background:var(--ink-800); }
+  .cap-item .sq{ transition:transform .3s; }
+  .cap-item:hover .sq{ transform:scale(1.3); }
+
+  .tile{ transition:transform .35s cubic-bezier(.2,.7,.2,1); }
+  .tile img{ transition:transform .55s cubic-bezier(.2,.7,.2,1), filter .35s; }
+  .tile:hover{ transform:translateY(-5px); }
+  .tile:hover img{ transform:scale(1.08); }
+  .tile-content h4{ transition:color .25s; }
+  .tile:hover .tile-content h4{ color:var(--amber); }
+
+  .also-card, .filter-btn, .nav-logo{ transition:transform .2s; }
+
+  .stat b{ transition:transform .3s; }
+  .stat:hover b{ transform:translateY(-2px); }
+
+  .contact-block .row a{ position:relative; transition:color .2s; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo mono">KAIQUE<b>·</b>TEIXEIRA</div>
+    <nav class="nav-links mono" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+      <a class="btn-cv-nav mono" href="Kaique-Teixeira-CV.pdf" download>Download CV</a>
+      <div class="on-air"><span class="dot"></span> ON AIR</div>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="heroSection">
+  <div class="hero-glow" id="heroGlow"></div>
+  <div class="frame">
+    <div class="corner tl"></div><div class="corner tr"></div>
+    <div class="corner bl"></div><div class="corner br"></div>
+    <div class="rec-badge mono"><span class="dot"></span> REC</div>
+    <div class="tc mono" id="timecode">00:00:00:00</div>
+  </div>
+  <div class="hero-eyebrow mono">SCOPE STUDIOS — RIO DE JANEIRO, BRAZIL</div>
+  <h1 class="hero-title display">Kaique<br>Teixeira</h1>
+  <p class="hero-role">Creative Producer — Sports, Brand &amp; Live Content</p>
+  <p class="hero-tagline mono">CONCEPT → CAPTURE → EDIT → DELIVERY</p>
+  <div class="scroll-cue mono">SCROLL ▾</div>
+</section>
+
+<!-- POSITIONING -->
+<section class="positioning" id="about">
+  <div class="wrap pos-grid">
+    <div class="pos-photo reveal">
+      <img src="https://cdn.myportfolio.com/fc877935-81cc-4b45-a415-0a8d1e2c9504/c10ebede-2e7a-4414-ba5f-c619fda8c47c_rw_3840.JPG?h=53f74ee47ad89d9b128bc63fa21de14f" alt="Kaique Teixeira shooting on location" loading="lazy">
+      <div class="pos-photo-tag">RIO DE JANEIRO, BRAZIL</div>
+    </div>
+    <div>
+    <div class="eyebrow mono reveal">POSITIONING</div>
+    <p class="pullquote display reveal" style="text-transform:none; font-family:'Anton',sans-serif;">Not just the person behind the camera — the one who plans the shoot, runs the room, and delivers the final cut.</p>
+    <div class="pos-copy reveal">
+      <p>I'm a Creative Producer building brands through visual storytelling. I'm the founder of Scope Studios, where I lead productions from concept to final delivery — combining creative strategy, photography, videography, and live broadcast production for brands, athletes, sports organizations, and artists.</p>
+      <p>Over the past 5+ years I've delivered projects across sports, commercial campaigns, live events, and entertainment, working with clients like Adidas, Vasco da Gama, NBA School, and Roberto Carlos. I'm currently building an international career and open to opportunities in content production, creative direction, and brand storytelling worldwide.</p>
+    </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="stats reveal-stagger">
+      <div class="stat reveal"><b>200+</b><span>Productions delivered</span></div>
+      <div class="stat reveal"><b>40+</b><span>Brands &amp; organizations</span></div>
+      <div class="stat reveal"><b>8</b><span>Max crew size led</span></div>
+      <div class="stat reveal"><b>5+</b><span>Years in production</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITY STRIP -->
+<section class="capability">
+  <div class="wrap">
+    <div class="cap-grid reveal-stagger">
+      <div class="cap-item reveal">
+        <div class="sq" style="background:var(--steel);"></div>
+        <h3>Production Management</h3>
+        <p>Planning, budgeting, and client relationships from first call to final delivery.</p>
+      </div>
+      <div class="cap-item reveal">
+        <div class="sq" style="background:var(--amber);"></div>
+        <h3>Brand Storytelling</h3>
+        <p>Content strategy and creative direction for campaigns and social platforms.</p>
+      </div>
+      <div class="cap-item reveal">
+        <div class="sq" style="background:var(--wine);"></div>
+        <h3>Photography &amp; Video</h3>
+        <p>Multi-camera capture across sports, events, commercial and music content.</p>
+      </div>
+      <div class="cap-item reveal">
+        <div class="sq" style="background:var(--graphite);"></div>
+        <h3>Live Broadcast</h3>
+        <p>vMix, OBS, and remote audio mixing for multicam livestreams.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUSTED BY -->
+<section class="trusted-by">
+  <div class="marquee-track-wrap">
+    <div class="marquee-track2" id="clientsMarquee"></div>
+  </div>
+</section>
+
+<!-- FEATURED WORK -->
+<section class="featured" id="work">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2 class="display">Featured<br>Work</h2>
+      <p>Three projects that show the full arc — from brand direction to sports coverage to artist content — not just the finished frame.</p>
+    </div>
+
+    <div class="case reveal">
+      <div class="case-media">
+        <img src="https://cdn.myportfolio.com/fc877935-81cc-4b45-a415-0a8d1e2c9504/6257d291-26b9-4fe7-9906-3b54c2dafa3c_car_3x4.JPG?h=baea616011c4ba650e06fccca3947e14" alt="Adidas production still" loading="lazy" style="object-position:center 15%;">
+      </div>
+      <div class="case-body">
+        <div class="tag mono"><span class="sq" style="background:var(--amber);"></span>BRAND &amp; COMMERCIAL</div>
+        <h3>Adidas</h3>
+        <div class="case-meta mono">ROLE — CONTENT PRODUCTION &amp; PHOTOGRAPHY</div>
+        <p>Produced campaign photography and video content for Adidas, translating brand direction into on-the-ground execution — from shot planning through to final delivery.</p>
+        <a href="project.html?p=adidas" class="mono" style="margin-top:20px; font-size:12px; letter-spacing:0.08em; color:var(--amber);">VIEW PROJECT →</a>
+      </div>
+    </div>
+
+    <div class="case reveal">
+      <div class="case-media">
+        <img src="https://cdn.myportfolio.com/fc877935-81cc-4b45-a415-0a8d1e2c9504/7b530d53-9cda-4871-8f51-a92a0969799a_rwc_0x314x3840x5114x3840.jpg?h=79f7f4d535f59d0b728059d58fe56d8f" alt="NBA Finals coverage" loading="lazy" style="object-position:center 20%;">
+      </div>
+      <div class="case-body">
+        <div class="tag mono"><span class="sq" style="background:var(--steel);"></span>SPORTS</div>
+        <h3>NBA School Finals</h3>
+        <div class="case-meta mono">ROLE — OFFICIAL PHOTOGRAPHER</div>
+        <p>Official photographer for the NBA School Finals, one of Brazil's largest youth basketball events — covering game action and behind-the-scenes moments with same-day turnaround for digital publishing.</p>
+        <a href="project.html?p=nba-finals" class="mono" style="margin-top:20px; font-size:12px; letter-spacing:0.08em; color:var(--steel);">VIEW PROJECT →</a>
+      </div>
+    </div>
+
+    <div class="case reveal">
+      <div class="case-media">
+        <img src="https://cdn.myportfolio.com/fc877935-81cc-4b45-a415-0a8d1e2c9504/9e16cf51-c17d-4ede-91c1-cf43bd5924dc_rwc_0x192x1920x2557x1920.jpg?h=8e01e849ce72ceaaeadfc300bd9960d6" alt="Roberto Carlos show" loading="lazy" style="object-position:center 15%;">
+      </div>
+      <div class="case-body">
+        <div class="tag mono"><span class="sq" style="background:var(--wine);"></span>MUSIC &amp; ENTERTAINMENT</div>
+        <h3>Roberto Carlos</h3>
+        <div class="case-meta mono">ROLE — CONTENT PRODUCTION</div>
+        <p>Produced photography and video content around Roberto Carlos performances, delivering stage-ready stills alongside short-form video for the artist's digital channels.</p>
+        <a href="project.html?p=roberto-carlos" class="mono" style="margin-top:20px; font-size:12px; letter-spacing:0.08em; color:var(--wine);">VIEW PROJECT →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FULL REEL -->
+<section class="reel">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2 class="display">Full Reel</h2>
+      <p>Every project, sorted by category. Tiles marked NO SIGNAL are waiting on final images — swap the source and caption for each.</p>
+    </div>
+    <div class="filters mono">
+      <button class="filter-btn active" data-filter="all" id="filterAllBtn">All</button>
+      <button class="filter-btn" data-filter="sports">Sports</button>
+      <button class="filter-btn" data-filter="brand">Brand &amp; Commercial</button>
+      <button class="filter-btn" data-filter="music">Music &amp; Entertainment</button>
+      <button class="filter-btn" data-filter="events">Events &amp; Personal</button>
+    </div>
+
+    <div class="grid" id="tileGrid"></div>
+  </div>
+</section>
+
+<!-- CTA / INTERNATIONAL -->
+<section class="cta" id="contact">
+  <div class="marquee">
+    <div class="marquee-track" id="countryMarquee"></div>
+  </div>
+  <div class="wrap cta-body">
+    <div class="reveal">
+      <div class="eyebrow mono">NEXT CHAPTER</div>
+      <h2 class="display" style="text-transform:none; font-family:'Anton',sans-serif;">Building toward an international career</h2>
+      <div class="pos-copy">
+        <p>I'm looking to bring this experience to an international market — with strong interest in sports organizations, brands, and creative agencies. Open to roles in content production, marketing, and creative direction, not limited to sports.</p>
+      </div>
+      <div class="avail">
+        <span>Open to relocation worldwide</span>
+        <span>Visa sponsorship required</span>
+        <span>Valid Brazilian passport</span>
+      </div>
+    </div>
+    <div class="contact-block reveal">
+      <a class="btn-cv mono" href="Kaique-Teixeira-CV.pdf" download>↓ Download CV (PDF)</a>
+      <div class="row"><span>EMAIL</span><a href="mailto:kaique.txr18@gmail.com">kaique.txr18@gmail.com</a></div>
+      <div class="row"><span>WHATSAPP</span><a href="https://wa.me/5521975021697" target="_blank" rel="noopener">+55 21 97502-1697</a></div>
+      <div class="row"><span>LINKEDIN</span><a href="https://www.linkedin.com/in/kaique-tteixeira/" target="_blank" rel="noopener">/in/kaique-tteixeira</a></div>
+      <div class="row"><span>INSTAGRAM</span><a href="https://www.instagram.com/kaiquedmteixeira" target="_blank" rel="noopener">@kaiquedmteixeira</a></div>
+      <div class="row"><span>LOCATION</span><span>Rio de Janeiro, Brazil</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-inner mono">
+    <span>© KAIQUE TEIXEIRA — SCOPE STUDIOS</span>
+    <span>BUILT FOR AN INTERNATIONAL CAREER</span>
+  </div>
+</footer>
+
+<script src="projects.js"></script>
+<script>
+  // Cursor-follow glow on hero (desktop only, respects reduced-motion)
+  (function(){
+    var hero = document.getElementById('heroSection');
+    if(!hero || window.matchMedia('(hover:none)').matches) return;
+    hero.addEventListener('mousemove', function(e){
+      var r = hero.getBoundingClientRect();
+      hero.style.setProperty('--gx', (e.clientX - r.left) + 'px');
+      hero.style.setProperty('--gy', (e.clientY - r.top) + 'px');
+    });
+  })();
+
+  // Mobile nav toggle
+  document.getElementById('navToggle').addEventListener('click', function(){
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+
+  // Ambient timecode ticker (decorative — reinforces the broadcast/live-production identity)
+  (function(){
+    var el = document.getElementById('timecode');
+    var start = Date.now();
+    function pad(n){ return n.toString().padStart(2,'0'); }
+    function tick(){
+      var elapsed = Math.floor((Date.now() - start) / (1000/30));
+      var frames = elapsed % 30;
+      var totalSeconds = Math.floor(elapsed / 30);
+      var seconds = totalSeconds % 60;
+      var minutes = Math.floor(totalSeconds / 60) % 60;
+      var hours = Math.floor(totalSeconds / 3600);
+      el.textContent = pad(hours)+':'+pad(minutes)+':'+pad(seconds)+':'+pad(frames);
+      requestAnimationFrame(tick);
+    }
+    if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      requestAnimationFrame(tick);
+    } else {
+      el.textContent = '00:00:00:00';
+    }
+  })();
+
+  // Render reel tiles from projects.js (excludes the 3 featured-above projects)
+  var FEATURED_SLUGS = ['adidas', 'nba-finals', 'roberto-carlos'];
+  var catColors = { sports:'var(--steel)', brand:'var(--amber)', music:'var(--wine)', events:'var(--graphite)' };
+  var catLabels = { sports:'Sports', brand:'Brand', music:'Music', events:'Events' };
+  var barsHTML = '<div class="bars"><span class="bar-1"></span><span class="bar-2"></span><span class="bar-3"></span><span class="bar-4"></span><span class="bar-5"></span><span class="bar-6"></span><span class="bar-7"></span></div>';
+
+  var reelProjects = (typeof PROJECTS !== 'undefined') ? PROJECTS.filter(function(p){ return FEATURED_SLUGS.indexOf(p.slug) === -1; }) : [];
+  var tileGrid = document.getElementById('tileGrid');
+  var allBtn = document.getElementById('filterAllBtn');
+  if(allBtn) allBtn.textContent = 'All (' + reelProjects.length + ')';
+
+  var tilesHTML = '';
+  reelProjects.forEach(function(p){
+    var hasImage = !!p.cover;
+    var mediaHTML = barsHTML + (hasImage
+      ? '<div class="tile-shimmer"></div><img src="'+p.cover+'" alt="'+p.name+'" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:1; opacity:0; transition:opacity .35s;" loading="lazy" onload="this.style.opacity=1; this.previousElementSibling.style.display=\'none\';" onerror="this.style.display=\'none\'; this.previousElementSibling.style.display=\'none\'; this.closest(\'.tile\').classList.add(\'img-failed\');">'
+      : '');
+    var signalTag = '<div class="no-signal">NO SIGNAL</div>';
+    tilesHTML += '<a class="tile reveal'+(hasImage ? '' : ' img-failed')+'" data-cat="'+p.category+'" href="project.html?p='+p.slug+'">'
+      + mediaHTML
+      + '<div class="tile-shade"></div>'
+      + signalTag
+      + '<div class="tile-content">'
+      + '<div class="tag mono"><span class="sq" style="background:'+catColors[p.category]+'"></span>'+catLabels[p.category]+'</div>'
+      + '<h4>'+p.name+'</h4>'
+      + '<div class="meta">'+(p.role || '')+' — '+p.year+'</div>'
+      + '</div></a>';
+  });
+  if(tileGrid) tileGrid.innerHTML = tilesHTML;
+
+  // Trusted-by marquee — built from real project/client names in projects.js
+  (function(){
+    var track = document.getElementById('clientsMarquee');
+    if(!track || typeof PROJECTS === 'undefined') return;
+    var names = PROJECTS.map(function(p){ return p.name; });
+    var joined = names.map(function(n){ return '<span>'+n+'</span>'; }).join('<span class="mono" style="color:var(--line); font-family:\'JetBrains Mono\',monospace; font-size:14px;">/</span>');
+    track.innerHTML = joined + joined;
+  })();
+
+  // Country marquee — full list, duplicated once for a seamless -50% loop
+  (function(){
+    var COUNTRIES = [
+      "IRELAND","UNITED KINGDOM","PORTUGAL","SPAIN","FRANCE","GERMANY","NETHERLANDS","BELGIUM",
+      "SWITZERLAND","ITALY","AUSTRIA","LUXEMBOURG","MONACO","DENMARK","SWEDEN","NORWAY","FINLAND",
+      "ICELAND","POLAND","CZECH REPUBLIC","SLOVAKIA","HUNGARY","ROMANIA","BULGARIA","GREECE",
+      "CROATIA","SERBIA","SLOVENIA","UKRAINE","ESTONIA","LATVIA","LITHUANIA","MALTA","CYPRUS",
+      "UNITED STATES","CANADA","MEXICO","BRAZIL","ARGENTINA","CHILE","COLOMBIA","URUGUAY","PERU",
+      "COSTA RICA","PANAMA","AUSTRALIA","NEW ZEALAND","JAPAN","SOUTH KOREA","SINGAPORE","HONG KONG",
+      "CHINA","INDIA","THAILAND","VIETNAM","MALAYSIA","INDONESIA","PHILIPPINES","UNITED ARAB EMIRATES",
+      "QATAR","SAUDI ARABIA","ISRAEL","TURKEY","EGYPT","SOUTH AFRICA","KENYA","NIGERIA","MOROCCO",
+      "RUSSIA"
+    ];
+    var track = document.getElementById('countryMarquee');
+    if(track){
+      var joined = COUNTRIES.join(' • ') + ' • ';
+      track.textContent = joined + joined;
+      var seconds = Math.max(60, Math.round(COUNTRIES.length * 1.6));
+      track.style.animationDuration = seconds + 's';
+    }
+  })();
+
+  // Scroll-reveal: fade/slide elements in as they enter the viewport
+  (function(){
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var els = document.querySelectorAll('.reveal');
+    if(reduced || !('IntersectionObserver' in window)){
+      els.forEach(function(el){ el.classList.add('in-view'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    els.forEach(function(el){ io.observe(el); });
+  })();
+
+  // Category filter
+  var buttons = document.querySelectorAll('.filter-btn');
+  buttons.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      buttons.forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.getAttribute('data-filter');
+      document.querySelectorAll('.tile').forEach(function(t){
+        t.style.display = (f === 'all' || t.getAttribute('data-cat') === f) ? 'flex' : 'none';
+      });
+    });
+  });
+</script>
+</body>
+</html>
