@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kaique Teixeira — Project</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -156,7 +157,18 @@
   if(!project){
     root.innerHTML = '<h1 class="display">Project not found</h1><p style="margin-top:16px;color:var(--text-mid)">Check the link, or <a href="index.html#work" style="color:var(--amber)">go back to the work section</a>.</p>';
   } else {
-    document.title = 'Kaique Teixeira — ' + project.name;
+    document.title = 'Kaique Teixeira — ' + project.name + ' | ' + catLabels[project.category];
+
+    // Client-side meta description + canonical (helps crawlers that execute JS;
+    // full static per-project HTML is a larger follow-up — see mudancas-propostas-site.md)
+    var metaDesc = document.createElement('meta');
+    metaDesc.name = 'description';
+    metaDesc.content = (project.blurb || (project.name + ' — ' + catLabels[project.category] + ' production by Kaique Teixeira, Scope Studios.')).slice(0, 160);
+    document.head.appendChild(metaDesc);
+    var canonical = document.createElement('link');
+    canonical.rel = 'canonical';
+    canonical.href = 'https://kaiquettxr.github.io/projects/' + project.slug + '/';
+    document.head.appendChild(canonical);
 
     // Hero content (title/tag/blurb) over the cover photo
     var heroHTML = '';
@@ -212,7 +224,7 @@
         var sizeClass = sizeCycle[i % sizeCycle.length];
         var delay = Math.min(i, 8) * 0.06;
         bodyHTML += '<div class="gallery-item ' + sizeClass + '" style="animation-delay:'+delay+'s">'
-          + '<img src="'+src+'" loading="lazy" alt="'+project.name+' photo '+(i+1)+'" style="animation-delay:'+delay+'s">'
+          + '<img src="'+src+'" loading="lazy" alt="'+project.name+' — '+catLabels[project.category]+' production, photo '+(i+1)+' of '+galleryImages.length+'" style="animation-delay:'+delay+'s">'
           + '</div>';
       });
       bodyHTML += '</div></div></section>';
@@ -237,7 +249,7 @@
       var mediaHTML = p.cover
         ? '<img src="'+p.cover+'" alt="'+p.name+'" loading="lazy">'
         : '';
-      alsoHTML += '<a class="also-card" href="project.html?p='+p.slug+'">';
+      alsoHTML += '<a class="also-card" href="/projects/'+p.slug+'/">';
       alsoHTML += '<div class="also-card-media">'+mediaHTML+'</div>';
       alsoHTML += '<div class="also-card-body">';
       alsoHTML += '<div class="tag mono" style="margin-bottom:0;"><span class="sq" style="background:'+catColors[p.category]+'"></span>'+catLabels[p.category]+'</div>';
