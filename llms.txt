@@ -20,13 +20,14 @@ Based in Rio de Janeiro, Brazil. Available for productions across Brazil, and op
 
 ## Contact
 
-- Email: kaique.txr18@gmail.com
-- WhatsApp: +55 21 97502-1697
-- LinkedIn: https://www.linkedin.com/in/kaique-tteixeira/
-- Instagram: https://www.instagram.com/kaiquedmteixeira
+- Email: [kaique.txr18@gmail.com](mailto:kaique.txr18@gmail.com)
+- WhatsApp: [+55 21 97502-1697](https://wa.me/5521975021697)
+- LinkedIn: [/in/kaique-tteixeira](https://www.linkedin.com/in/kaique-tteixeira/)
+- Instagram: [@kaiquedmteixeira](https://www.instagram.com/kaiquedmteixeira)
 
 ## Pages
 
-- Portfolio & work: https://kaiquettxr.github.io/#work
-- About: https://kaiquettxr.github.io/#about
-- Contact: https://kaiquettxr.github.io/#contact
+- [Home](https://kaiquettxr.github.io/)
+- [Portfolio & work](https://kaiquettxr.github.io/#work)
+- [About](https://kaiquettxr.github.io/#about)
+- [Contact](https://kaiquettxr.github.io/#contact)
